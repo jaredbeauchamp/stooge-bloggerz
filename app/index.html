@@ -8,35 +8,49 @@
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
     <!-- build:css(.) styles/vendor.css -->
     <!-- bower:css -->
-    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css">
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
     <!-- endbower -->
     <!-- endbuild -->
     <!-- build:css(.tmp) styles/main.css -->
     <link rel="stylesheet" href="styles/main.css">
     <!-- endbuild -->
   </head>
-  <body ng-app="stoogeBloggerzApp">
+  <body ng-app="stoogeBloggerzApp" ng-controller="BlogCtrl">
     <!--[if lt IE 7]>
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
 
     <!-- Add your site or application content here -->
-    <div class="container">
+     <!--
       <div class="header">
         <ul class="nav nav-pills pull-right">
-          <li class="active"><a ng-href="#">Home</a></li>
-          <li><a ng-href="#/about">About</a></li>
-          <li><a ng-href="#">Contact</a></li>
+          <li ng-repeat="author in authorList" ng-click="changeAuthor(author.author)"><a ng-href="#">{{author.author}}</a></li>
+          <li ng-click="changeAuthor('')"><a ng-href="#">All</a></li>
         </ul>
         <h3 class="text-muted">stoogeBloggerz</h3>
+      </div> 
+    -->
+
+    <div class="blog-masthead">
+      <div class="container">
+        <nav class="blog-nav">
+          <a class="blog-nav-item" ng-href="#" ng-repeat="author in authorList" ng-click="changeAuthor(author.author)">{{author.author}}</a>
+          <a class="blog-nav-item" ng-href="#" ng-click="changeAuthor('')">All</a>
+        </nav>
+      </div>
+    </div>
+<div class="container" > 
+      <div class="blog-header">
+        <h1 class="blog-title">Stooge-Bloggerz</h1>
+        <p class="lead blog-description">Angular example blog styled with Bootstrap.</p>
       </div>
 
       <div ng-view=""></div>
 
-      <div class="footer">
-        <p><span class="glyphicon glyphicon-heart"></span> from the Yeoman team</p>
-      </div>
     </div>
+    <div class="blog-footer">
+        <p>Built with <span class="glyphicon glyphicon-heart"></span> by JaredBeauchamp.com</p>
+      </div>
 
 
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
@@ -76,6 +90,10 @@
         <script src="scripts/app.js"></script>
         <script src="scripts/controllers/main.js"></script>
         <script src="scripts/controllers/about.js"></script>
+        <script src="scripts/controllers/blog.js"></script>
+        <script src="scripts/services/blog.js"></script>
+        <script src="scripts/services/posts.js"></script>
+        <script src="scripts/services/author.js"></script>
         <!-- endbuild -->
 </body>
 </html>
